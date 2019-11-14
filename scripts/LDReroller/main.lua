@@ -3,7 +3,7 @@ dofile(localPath .. "scripts/LDReroller/popups.lua")
 dofile(localPath .. "scripts/LDReroller/battle.lua")
 dofile(localPath .. "scripts/LDReroller/reset.lua")
 dofile(localPath .. "scripts/LDReroller/tutorial.lua")
-dofile(localPath .. "scripts/LDReroller/clearScenario.lua")
+dofile(localPath .. "scripts/LDReroller/clearZone.lua")
 dofile(localPath .. "scripts/LDReroller/openLD.lua")
 
 function ldReroller()
