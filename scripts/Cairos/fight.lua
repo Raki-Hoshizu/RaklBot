@@ -10,7 +10,7 @@ end
 
 function restartDungeon()
 	printBattleMessage()
-	while not victoryRegion:exists(Pattern("victory.png"):similar(imgAccuracy), 1) and not victoryRegion:exists(Pattern("defeated.png"):similar(imgAccuracy), 1) do
+	while not victoryRegion:exists(Pattern("victory.png"):similar(imgAccuracy), 1) and not reviveNoRegion:exists(Pattern("bigNo.png"):similar(imgAccuracy), 1) do
 	end
 	if victoryRegion:existsClick(Pattern("victory.png"):similar(imgAccuracy), 1) then
 		winCount = winCount + 1
@@ -19,25 +19,25 @@ function restartDungeon()
 		wait(2) -- Attend la fin de l'animation
 		sellRune()
 		if replayNoRegion:exists(Pattern("replay.png"):similar(imgAccuracy), 5) then
+			replayNoRegion:existsClick(Pattern("replay.png"):similar(imgAccuracy), 5)
 			if noEnergyRegion:exists(Pattern("noEnergy.png"):similar(imgAccuracy), 2) then
 				refillEnergy()
 			end
-			replayNoRegion:existsClick(Pattern("replay.png"):similar(imgAccuracy), 5)
 			restartDungeon()
 		else
 			print ("Replay button not found")
 		end
-	elseif victoryRegion:existsClick(Pattern("defeated.png"):similar(imgAccuracy), 1) then
+	elseif reviveNoRegion:existsClick(Pattern("bigNo.png"):similar(imgAccuracy), 5) then
 		loseCount = loseCount + 1
 		if not stopOnDefeat then
-			if reviveNoRegion:existsClick(Pattern("bigNo.png"):similar(imgAccuracy), 5) then
-				if replayNoRegion:existsClick(Pattern("bigPrepare.png"):similar(imgAccuracy), 2) then
-					restartDungeon()
-				else
-					print ("Replay button not found")
-				end
+			if victoryRegion:existsClick(Pattern("defeated.png"):similar(imgAccuracy), 5) then
 			else
-				print ("Couldn't find the No button in reviveNoRegion")
+				toast("Can't find defeated.png pattern.")
+			end
+			if replayNoRegion:existsClick(Pattern("bigPrepare.png"):similar(imgAccuracy), 2) then
+				startDungeon()
+			else
+				toast("Can't find prepare button.")
 			end
 		else
 			print ("Bot stopped: You lost a run")

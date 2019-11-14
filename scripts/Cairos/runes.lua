@@ -1,5 +1,5 @@
 function sellRune()
-	if runeStarRegion:exists(Pattern("6stars.png"):similar(imgAccuracy), 1) then
+	if runeStarRegion:exists(Pattern("6stars.png"):similar(0.9), 1) then
 		if not keep6Stars then
 			toast("Selling 6 stars rune...")
 			runeSellOkRegion:existsClick(Pattern("sell.png"):similar(imgAccuracy), 2)
@@ -10,7 +10,7 @@ function sellRune()
 			r6Count = r6Count+1
 			runeSellOkRegion:existsClick(Pattern("ok.png"):similar(imgAccuracy), 2)
 		end
-	elseif runeStarRegion:exists(Pattern("5stars.png"):similar(imgAccuracy), 1) then
+	elseif runeStarRegion:exists(Pattern("5stars.png"):similar(0.9), 1) then
 		if not keep5Stars then
 			toast("Selling 5 stars rune...")
 			runeSellOkRegion:existsClick(Pattern("sell.png"):similar(imgAccuracy), 2)
