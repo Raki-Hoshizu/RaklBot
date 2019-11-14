@@ -4,36 +4,17 @@ function dialogBox()
 	newRow() -- Retour à la ligne
 	addRadioGroup("menuChoice", 1) -- Créé un groupe de formulaire
 	addRadioButton("Start primitive sequence", 10) -- 1er choix
-	addRadioButton("Options", 11) -- 2e choix
+	newRow()
+	addTextView("More coming soon ...")
 
 	dialogShowFullScreen("Welcome") -- Appelle la page "Welcome" et la met en full screen
 
 	-- Redirection en fonction du choix
 	if (menuChoice == 10) then
 		priSeqDialogBox()
-	elseif (menuChoice == 11) then
-		optionsDialogBox()
 	else
 		print("Error, choice "..menuChoice.." is unknown.")
 	end
-end
-
-function optionsDialogBox()
-	dialogInit()
-
-	addCheckBox("stopOnDefeat", "Stop on defeat", false)
-	newRow()
-	addCheckBox("keep5Stars", "Keep 5 Stars runes", false)
-	newRow()
-	addCheckBox("keep6Stars", "Keep 6 Stars runes", true)
-	newRow()
-	addCheckBox("useCrystals", "Use crystals to refill energy", false)
-	newRow()
-	addCheckBox("useRewardBox", "Use reward box to refill energy", true)
-
-	dialogShowFullScreen("Options")
-
-	dialogBox() -- Appelle la fonction dialogBox()
 end
 
 function priSeqDialogBox()
@@ -46,7 +27,8 @@ function priSeqDialogBox()
 	addRadioButton("Cairos/Scenario/Toa(H)/Rift", 10)
 	addRadioButton("(WIP) Arena", 11)
 	addRadioButton("(Works sometimes) LD-Reroller", 12)
-	addRadioButton("Go back.", 13)
+	addRadioButton("Add friends", 13)
+	addRadioButton("Go back.", 14)
 
 	dialogShowFullScreen("Primitive Sequence Configuration")
 
@@ -55,6 +37,8 @@ function priSeqDialogBox()
 	elseif (priSeq == 12) then
 		dialogLDReroller()
 	elseif (priSeq == 13) then
+		dialogBoxAddFriends()
+	elseif (priSeq == 14) then
 		dialogBox()
 	else
 		toast("Error. Only Cairos available for now.")
@@ -89,6 +73,7 @@ function dialogLDReroller()
 
 	if (confirmReset == "yes") then
 		if (nickname ~= "") then
+			dragDrop(Location(60, 1010), Location(1850, 60))
 			ldReroller()
 		else
 			print("Please enter a valid nickname.")
@@ -162,11 +147,40 @@ function dialogBox10()
 	addSpinner("farmScenario", spinnerAreaScenario, "Garen Forest")
 
 	dialogShowFullScreen("Cairos/Scenario/Toa(H)/Rift")
+	dialogBoxCairosOptions()
 end
 
-function choiceRedirecting()
-	if (priSeq == 10) then
-		goToMap()
-		selectZone()
-	end
+function dialogBoxAddFriends()
+
+	dialogInit()
+	addTextView("Text to spam :")
+	addEditText("messageAddFriends")
+	newRow()
+	addTextView("Note : les accents, parenthèses etc. ne fonctionnent pas.")
+	newRow()
+	addTextView("Starting channel :")
+	addEditText("channel")
+	newRow()
+	addTextView("Channel max :")
+	addEditText("channelMax")
+
+	dialogShowFullScreen("Easy Add Friends")
+	addFriends()
+end
+
+function dialogBoxCairosOptions()
+	dialogInit()
+
+	addCheckBox("stopOnDefeat", "Stop on defeat", false)
+	newRow()
+	addCheckBox("keep5Stars", "Keep 5 Stars runes", false)
+	newRow()
+	addCheckBox("keep6Stars", "Keep 6 Stars runes", true)
+	newRow()
+	addCheckBox("useCrystals", "Use crystals to refill energy", false)
+	newRow()
+	addCheckBox("useRewardBox", "Use reward box to refill energy", true)
+
+	dialogShowFullScreen("Options")
+	startCairos()
 end

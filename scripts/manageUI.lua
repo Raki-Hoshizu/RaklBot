@@ -18,7 +18,15 @@ end
 
 function goToMap()
 	toast("goToMap")
-	click(battleIconLocation)
+	setImagePath(localPath .. "scripts/img")
+	-- id1
+	if battleIconRegion:existsClick(Pattern("battleIcon.png"):similar(imgAccuracy), 1) then
+	else
+		toast("Can't find Battle icon.")
+	end
+	if closePurchaseRegion:existsClick(Pattern("closePurchase.png"):similar(imgAccuracy), 2) then
+		click(yesClosePurchaseLocation)
+	end
 	wait(1)
 end
 

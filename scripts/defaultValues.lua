@@ -23,7 +23,7 @@ end
 
 -- Initialise les zones d'écran Region(coordX, coordY, Largeur, Hauteur)
 function defaultRegionLocation ()
-	battleIconRegion = Region(980, 800, 192, 264) -- La zone où est l'icone pour aller sur la Map
+	battleIconRegion = Region(980, 900, 190, 160) -- id1
 	startRegion = Region(1435, 670, 350, 150) -- Zone du bouton start pour lancer une run
 	dungeonListRegion = Region(235, 265, 550, 800) -- Liste des donjons à gauche dans Cairos
 	dungeonBattleRegion = Region(800, 255, 850, 815) -- Liste des niveaux à droite dans Cairos
@@ -187,4 +187,10 @@ function defaultRegionLocation ()
 	closeChallengesLocation = Location(1870, 45)
 
 	noEnergyRegion = Region(750, 350, 290, 70)
+	closePurchaseRegion = Region(1650, 50, 120, 115)
+	buttonShopEnergyRegion = Region(620, 600, 340, 125) -- id2
+	pricesRefillRegion = Region(200, 730, 1200, 90) -- id3
+	yesCrystalsEnergyRegion = Region(650, 600, 300, 100) -- id4
+	okSuccessfulPurchaseRegion = Region(820, 590, 285, 120) -- id5
+	closeEnergyShopRegion = Region(1750, 70, 95, 85) -- id6
 end
